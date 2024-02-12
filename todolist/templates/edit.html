@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{%block title%}
+  <title>Edit task - Tasknate</title>
+{%endblock title%}
+
+{%block content%}
+<div class="container">
+ <br>
+
+ {%if task_obj.manage == request.user%}
+    <form method = "POST" class="row">
+      {% csrf_token %}
+   
+        <label for="exampleInputEmail1" class="form-label col-lg-2"  ></label>
+        <input type="text" class=" col-lg-6" placeholder="{{task_obj.task}}" name="task" value="{{task_obj.task}}">
+        <input type="hidden"  name="done" value="{{task_obj.done}}">
+      <button type="submit" class="btn btn-primary col-lg-2">Update Task</button>
+    </form>
+    {%else%}
+      <p>Access Restricted. You are not allowed! </p>
+   {% endif %}
+
+</div>
+{%endblock content%}
